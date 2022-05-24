@@ -1,6 +1,6 @@
 export interface Films {
   title: string,
-  author: string;
+  origName: string;
   imgUrl: string;
   id: string;
 }

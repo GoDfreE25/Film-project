@@ -1,0 +1,14 @@
+.container {
+  padding: 0 124px;
+}
+
+.film {
+  max-width: 1200px;
+}
+
+.film__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
