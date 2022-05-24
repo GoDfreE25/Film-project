@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import { FilmList } from './Components/FilmList/FilmList';
 import filmsFromServer from './api/films.json';
 

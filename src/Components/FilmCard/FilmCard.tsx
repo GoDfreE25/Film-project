@@ -16,7 +16,7 @@ export const FilmCard: React.FC<Films> = ({
      <Card sx={{ maxWidth: 355 }}>
       <CardMedia
         component="img"
-        height="140"
+        height="240"
         image={`${imgUrl}`}
         alt="green iguana"
       />

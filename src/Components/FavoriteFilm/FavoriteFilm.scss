@@ -1,0 +1,35 @@
+.favoriteFilm {
+  max-width: 1200px;
+  display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+
+  list-style: none;
+  &__container {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__img {
+    height: 250px;
+    width: 200px;
+  }
+
+  &__title {
+    font-size: 24px;
+  }
+
+  &__close {
+    padding: 222px 10px 0 0;
+  }
+
+  &__close::before {
+    content: 'x';
+    color: black;
+    font-weight: 300;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+  }
+}
