@@ -1,5 +1,5 @@
-import React from "react";
-import { Films } from "../../Types/Film";
+import React, { useEffect, useState } from "react";
+import { Anime } from "../../Types/Anime";
 import { FilmCard } from "../FilmCard/FilmCard";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -8,11 +8,41 @@ import Button from '@mui/material/Button';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import { FavoriteFilm } from "../FavoriteFilm/FavoriteFilm";
 
-type Props = {
-  films: Films[];
-}
 
-export const FilmList: React.FC<Props> = ({ films }) => {
+export const FilmList: React.FC = () => {
+  const [animeFromServer, setAnimeFromServer] = useState([]);
+  const query = `
+  {
+  Page(page: 1, perPage: 6) {
+      media(search: "seven deadly") {
+        id
+        bannerImage
+        title {
+          english
+          native
+        }
+      }
+  }
+}
+`;
+
+useEffect(() => {
+  fetch('https://graphql.anilist.co',
+    {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+          query: query,
+      })
+    }).then(response => response.json())
+      .then(data => setAnimeFromServer(data.data.Page.media));
+}, [query])
+
+  
+
   return (
     <>
     <div className="container">
@@ -23,7 +53,7 @@ export const FilmList: React.FC<Props> = ({ films }) => {
           freeSolo
           id="free-solo-2-demo"
           disableClearable
-          options={films.map((option) => option.title)}
+          options={animeFromServer.map((option: Anime) => option?.title.english)}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -36,17 +66,19 @@ export const FilmList: React.FC<Props> = ({ films }) => {
           )}
         />
         <ul className="film__list">
-          {films.map(film => (
-            <li key={film.id}>
-              <FilmCard {...film} />
+          {animeFromServer.map((anime: any) => (
+            <li key={anime?.id}>
+              <FilmCard {...anime} />
             </li>
-          ))}
+          ))
+            
+           }
         </ul>
       </div>
       <Button variant="contained" endIcon={<ArrowCircleRightIcon />}>
         More
       </Button>
-      <FavoriteFilm films={films} />
+      <FavoriteFilm />
     </div>
     
     </>

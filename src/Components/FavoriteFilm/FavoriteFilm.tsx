@@ -1,17 +1,14 @@
 import React from 'react';
-import { Films } from '../../Types/Film';
+//import { Anime } from '../../Types/Anime';
 import './FavoriteFilm.scss';
 
-type Props = {
-  films: Films[];
-}
 
-export const FavoriteFilm: React.FC<Props> = ({ films }) => {
+export const FavoriteFilm: React.FC = () => {
 
   return (
     <>
       <h2>Любиме Аніме</h2>
-      <ul className="favoriteFilm">
+      {/* <ul className="favoriteFilm">
         {films.map(film => (
           <li key={film.id}>
             <div className="favoriteFilm__container">
@@ -26,7 +23,7 @@ export const FavoriteFilm: React.FC<Props> = ({ films }) => {
             </div>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </>
   );
 }

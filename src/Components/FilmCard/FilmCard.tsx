@@ -1,4 +1,4 @@
-import { Films } from "../../Types/Film";
+import { Anime } from "../../Types/Anime";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,25 +7,28 @@ import Typography from '@mui/material/Typography';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
 
-export const FilmCard: React.FC<Films> = ({
-  title,
-  origName,
-  imgUrl,
+export const FilmCard: React.FC<Anime> = ({
+  bannerImage,
+  id,
+  title: {
+    english,
+    native,
+  }
 }) => (
   <>
-     <Card sx={{ maxWidth: 355 }}>
+     <Card sx={{ maxWidth: 450, height: 430 }}>
       <CardMedia
         component="img"
         height="240"
-        image={`${imgUrl}`}
-        alt="green iguana"
+        image={`${bannerImage}`}
+        alt={english}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-         {title}
+        <Typography gutterBottom variant="h6" component="div">
+         {english}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {origName}
+          {native}
         </Typography>
       </CardContent>
       <CardActions>
