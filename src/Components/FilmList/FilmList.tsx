@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Anime } from "../../Types/Anime";
 import { FilmCard } from "../FilmCard/FilmCard";
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import './FilmList.scss';
 import Button from '@mui/material/Button';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
@@ -11,10 +8,20 @@ import { FavoriteFilm } from "../FavoriteFilm/FavoriteFilm";
 
 export const FilmList: React.FC = () => {
   const [animeFromServer, setAnimeFromServer] = useState([]);
+  const [searchedAnime, setSearchedAnime] = useState('');
+  const [pages, setPages] = useState(6);
+  const [idForFavorrite, setIdForFavorite] = useState(0);
+  console.log(idForFavorrite);
+  
+
+   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchedAnime(event.target.value)
+  };
+
   const query = `
   {
-  Page(page: 1, perPage: 6) {
-      media(search: "seven deadly") {
+  Page(page: 1, perPage: ${pages}) {
+      media(search: "${searchedAnime}") {
         id
         bannerImage
         title {
@@ -41,41 +48,34 @@ useEffect(() => {
       .then(data => setAnimeFromServer(data.data.Page.media));
 }, [query])
 
-  
-
   return (
     <>
     <div className="container">
       <div className="film">
         <h2>Список Аніме</h2>
-        <Autocomplete
-          style={{width: "550px", margin: "auto"}}
-          freeSolo
-          id="free-solo-2-demo"
-          disableClearable
-          options={animeFromServer.map((option: Anime) => option?.title.english)}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Search input"
-              InputProps={{
-                ...params.InputProps,
-                type: 'search',
-              }}
-            />
-          )}
+        <input
+          type="search"
+          id="search-query"
+          className="film__input"
+          placeholder="Type searched anime"
+          value={searchedAnime}
+          onChange={handleChange}
         />
         <ul className="film__list">
           {animeFromServer.map((anime: any) => (
             <li key={anime?.id}>
-              <FilmCard {...anime} />
+              <FilmCard anime={anime} setId={setIdForFavorite} />
             </li>
           ))
             
            }
         </ul>
       </div>
-      <Button variant="contained" endIcon={<ArrowCircleRightIcon />}>
+      <Button 
+        variant="contained" 
+        endIcon={<ArrowCircleRightIcon />}
+        onClick={() => setPages(pages + 6)}
+      >
         More
       </Button>
       <FavoriteFilm />

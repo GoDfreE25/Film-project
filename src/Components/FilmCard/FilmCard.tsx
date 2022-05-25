@@ -7,35 +7,39 @@ import Typography from '@mui/material/Typography';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
 
-export const FilmCard: React.FC<Anime> = ({
-  bannerImage,
-  id,
-  title: {
-    english,
-    native,
+  interface Props {
+    anime: Anime;
+    setId: (id: number) => void;
   }
-}) => (
+
+export const FilmCard: React.FC<Props> = ({anime, setId}) => {
+
+return (
   <>
-     <Card sx={{ maxWidth: 450, height: 430 }}>
+     <Card sx={{ maxWidth: 450, height: 400 }}>
       <CardMedia
         component="img"
         height="240"
-        image={`${bannerImage}`}
-        alt={english}
+        image={`${anime.bannerImage}`}
+        alt={anime.title.english || anime.title.native}
       />
       <CardContent>
         <Typography gutterBottom variant="h6" component="div">
-         {english}
+         {anime.title.english}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {native}
+          {anime.title.native}
         </Typography>
       </CardContent>
       <CardActions>
-      <IconButton style={{textAlign: "right"}} aria-label="add to favorites">
+      <IconButton 
+        aria-label="favorite" 
+        size="large"
+        onClick={() => setId(anime.id)}
+      >
           <FavoriteBorderIcon />
         </IconButton>
       </CardActions>
     </Card>
   </>
-);
+)};
