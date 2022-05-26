@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { FilmCard } from "../FilmCard/FilmCard";
-import './FilmList.scss';
+import { FilmCard } from "../AnimeCard/AnimeCard";
+import './AnimeList.scss';
 import Button from '@mui/material/Button';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import { FavoriteFilm } from "../FavoriteFilm/FavoriteFilm";
+import { FavoriteFilm } from "../FavoriteAnime/FavoriteAnime";
+import { Anime } from "../../Types/Anime";
 
 
 export const FilmList: React.FC = () => {
   const [animeFromServer, setAnimeFromServer] = useState([]);
   const [searchedAnime, setSearchedAnime] = useState('');
   const [pages, setPages] = useState(6);
-  const [idForFavorrite, setIdForFavorite] = useState(0);
-  console.log(idForFavorrite);
-  
+  const [idForFavorrite, setIdForFavorite] = useState<number>(0);
+  const [favorritsIds, setFavoritsIds] = useState<number[]>([]);
+
+  useEffect(() => {
+    setFavoritsIds(curentAnime => [...curentAnime, idForFavorrite])
+  }, [idForFavorrite])
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchedAnime(event.target.value)
@@ -62,7 +66,7 @@ useEffect(() => {
           onChange={handleChange}
         />
         <ul className="film__list">
-          {animeFromServer.map((anime: any) => (
+          {animeFromServer.map((anime: Anime) => (
             <li key={anime?.id}>
               <FilmCard anime={anime} setId={setIdForFavorite} />
             </li>
@@ -78,7 +82,7 @@ useEffect(() => {
       >
         More
       </Button>
-      <FavoriteFilm />
+      <FavoriteFilm filmsIds={favorritsIds}/>
     </div>
     
     </>

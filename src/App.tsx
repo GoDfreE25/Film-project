@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import { FilmList } from './Components/FilmList/FilmList';
+import { FilmList } from './Components/AnimeList/AnimeList';
 
 
 
