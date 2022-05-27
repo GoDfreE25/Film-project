@@ -47,8 +47,6 @@ useEffect(() => {
       .then(data => setFavoriteAnime(data.data.Page.media));
 }, [query]);
 
-  console.log()
-
   return (
     <>
       <h2>Любиме Аніме</h2>

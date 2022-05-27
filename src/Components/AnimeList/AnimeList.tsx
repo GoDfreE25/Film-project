@@ -54,7 +54,7 @@ useEffect(() => {
 }, [query]);
 
 const debouncedChangeHandler = useCallback (
-  debounce(handleChange, 500)
+  debounce(handleChange, 1500)
 , []);
 
   return (
