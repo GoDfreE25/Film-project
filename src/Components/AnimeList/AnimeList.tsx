@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AnimeCard } from "../AnimeCard/AnimeCard";
 import './AnimeList.scss';
 import Button from '@mui/material/Button';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import { FavoriteAnime } from "../FavoriteAnime/FavoriteAnime";
 import { Anime } from "../../Types/Anime";
+import debounce from 'lodash.debounce';
 
 
 export const AnimeList: React.FC = () => {
@@ -21,6 +22,9 @@ export const AnimeList: React.FC = () => {
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchedAnime(event.target.value)
   };
+
+  console.log(searchedAnime);
+  
 
   const query = `
   {
@@ -50,7 +54,11 @@ useEffect(() => {
       })
     }).then(response => response.json())
       .then(data => setAnimeFromServer(data.data.Page.media))
-}, [query])
+}, [query]);
+
+const debouncedChangeHandler = useCallback(
+  debounce(handleChange, 500)
+, []);
 
   return (
     <>
@@ -62,8 +70,7 @@ useEffect(() => {
           id="search-query"
           className="anime__input"
           placeholder="Type searched anime"
-          value={searchedAnime}
-          onChange={handleChange}
+          onChange={debouncedChangeHandler}
         />
         <ul className="anime__list">
           {animeFromServer.map((anime: Anime) => (
