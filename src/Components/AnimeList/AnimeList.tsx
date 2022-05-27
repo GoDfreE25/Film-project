@@ -61,7 +61,7 @@ const debouncedChangeHandler = useCallback (
     <>
     <div className="container">
       <div className="anime">
-        <h2>Список Аніме</h2>
+        <h2 className="anime__title">Список Аніме</h2>
         <input
           type="search"
           id="search-query"
@@ -74,7 +74,7 @@ const debouncedChangeHandler = useCallback (
             <li key={anime.id}>
               <AnimeCard 
                 anime={anime} 
-                setId={setIdForFavorite} 
+                setId={setIdForFavorite}
               />
             </li>
           ))
@@ -86,6 +86,7 @@ const debouncedChangeHandler = useCallback (
         variant="contained" 
         endIcon={<ArrowCircleRightIcon />}
         onClick={() => setPages(pages + 3)}
+        style={{ color: "black", background: "green" }}
       >
         More
       </Button>

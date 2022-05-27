@@ -5,6 +5,10 @@
 .anime {
   max-width: 1200px;
 
+  &__title {
+    color: green;
+  }
+
   &__input {
     font-size: 24px;
     background: rgb(197, 194, 194);

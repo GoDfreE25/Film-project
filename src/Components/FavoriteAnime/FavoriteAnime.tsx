@@ -49,7 +49,7 @@ useEffect(() => {
 
   return (
     <>
-      <h2>Любиме Аніме</h2>
+      <h2 className='title'>Любиме Аніме</h2>
       <ul className="favoriteAnime">
         {favoriteAnime.map((anime: Anime) => (
           <li key={anime.id}>

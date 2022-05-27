@@ -13,9 +13,9 @@ import { useState } from "react";
   interface Props {
     anime: Anime;
     setId: (id: number) => void;
-  }
+  };
 
-export const AnimeCard: React.FC<Props> = React.memo(({anime, setId}) => {
+export const AnimeCard: React.FC<Props> = React.memo(({ anime, setId }) => {
   const [changeHeart, setChangeHeart] = useState<boolean>(false);
 
   const setAnimeId = (animeId: number) => {
