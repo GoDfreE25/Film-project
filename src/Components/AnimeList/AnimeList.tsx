@@ -8,7 +8,7 @@ import { Anime } from "../../Types/Anime";
 import debounce from 'lodash.debounce';
 
 
-export const AnimeList: React.FC = () => {
+export const AnimeList: React.FC = React.memo(() => {
   const [animeFromServer, setAnimeFromServer] = useState([]);
   const [searchedAnime, setSearchedAnime] = useState<string>('');
   const [pages, setPages] = useState<number>(3);
@@ -98,4 +98,4 @@ const debouncedChangeHandler = useCallback (
     </>
     
   )
-}
+});

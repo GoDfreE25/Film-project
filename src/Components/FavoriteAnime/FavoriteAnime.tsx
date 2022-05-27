@@ -9,7 +9,7 @@ interface Props {
   setFilmsId: ([v]: number[]) => void;
 }
 
-export const FavoriteAnime: React.FC<Props> = ({ filmsIds, setFilmsId }) => {
+export const FavoriteAnime: React.FC<Props> = React.memo(({ filmsIds, setFilmsId }) => {
   const [favoriteAnime, setFavoriteAnime] = useState<Anime[]>([]);
  
   const deleteAnime = (animeId: number) => {
@@ -77,4 +77,4 @@ useEffect(() => {
       </ul>
     </>
   );
-}
+});

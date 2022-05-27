@@ -1,3 +1,4 @@
+import React from "react";
 import { Anime } from "../../Types/Anime";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -14,7 +15,7 @@ import { useState } from "react";
     setId: (id: number) => void;
   }
 
-export const AnimeCard: React.FC<Props> = ({anime, setId}) => {
+export const AnimeCard: React.FC<Props> = React.memo(({anime, setId}) => {
   const [changeHeart, setChangeHeart] = useState<boolean>(false);
 
   const setAnimeId = (animeId: number) => {
@@ -51,4 +52,4 @@ return (
       </CardActions>
     </Card>
   </>
-)};
+)});
