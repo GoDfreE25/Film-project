@@ -6,7 +6,7 @@ import './FavoriteAnime.scss';
 
 interface Props {
   filmsIds: number[];
-  setFilmsId: ([]: number[]) => void;
+  setFilmsId: ([v]: number[]) => void;
 }
 
 export const FavoriteAnime: React.FC<Props> = ({ filmsIds, setFilmsId }) => {

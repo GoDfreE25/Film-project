@@ -6,6 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IconButton from '@mui/material/IconButton';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useState } from "react";
 
   interface Props {
     anime: Anime;
@@ -13,6 +15,12 @@ import IconButton from '@mui/material/IconButton';
   }
 
 export const AnimeCard: React.FC<Props> = ({anime, setId}) => {
+  const [changeHeart, setChangeHeart] = useState<boolean>(false);
+
+  const setAnimeId = (animeId: number) => {
+    setId(animeId);
+    setChangeHeart(!changeHeart);
+  };
 
 return (
   <>
@@ -36,9 +44,9 @@ return (
         aria-label="favorite" 
         size="large"
         style={{marginLeft: 300}}
-        onClick={() => setId(anime.id)}
+        onClick={() => setAnimeId(anime.id)}
       >
-          <FavoriteBorderIcon />
+          {changeHeart ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </IconButton>
       </CardActions>
     </Card>

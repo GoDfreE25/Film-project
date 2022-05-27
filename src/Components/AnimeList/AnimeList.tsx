@@ -9,14 +9,14 @@ import { Anime } from "../../Types/Anime";
 
 export const AnimeList: React.FC = () => {
   const [animeFromServer, setAnimeFromServer] = useState([]);
-  const [searchedAnime, setSearchedAnime] = useState('');
-  const [pages, setPages] = useState(3);
-  const [idForFavorrite, setIdForFavorite] = useState<number>(0);
+  const [searchedAnime, setSearchedAnime] = useState<string>('');
+  const [pages, setPages] = useState<number>(3);
+  const [idForFavorite, setIdForFavorite] = useState<number>(0);
   const [favorritsIdsList, setFavoritsIdsList] = useState<number[]>([]);
 
   useEffect(() => {
-    setFavoritsIdsList(curentAnime => [...curentAnime, idForFavorrite])
-  }, [idForFavorrite])
+    setFavoritsIdsList(curentAnime => [...curentAnime, idForFavorite])
+  }, [idForFavorite])
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchedAnime(event.target.value)
@@ -49,7 +49,7 @@ useEffect(() => {
           query: query,
       })
     }).then(response => response.json())
-      .then(data => setAnimeFromServer(data.data.Page.media));
+      .then(data => setAnimeFromServer(data.data.Page.media))
 }, [query])
 
   return (
@@ -67,8 +67,11 @@ useEffect(() => {
         />
         <ul className="anime__list">
           {animeFromServer.map((anime: Anime) => (
-            <li key={anime?.id}>
-              <AnimeCard anime={anime} setId={setIdForFavorite} />
+            <li key={anime.id}>
+              <AnimeCard 
+                anime={anime} 
+                setId={setIdForFavorite} 
+              />
             </li>
           ))
             

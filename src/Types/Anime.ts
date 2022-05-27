@@ -5,4 +5,4 @@ export interface Anime {
     english: string;
     native: string;
   }
-  }
+}
