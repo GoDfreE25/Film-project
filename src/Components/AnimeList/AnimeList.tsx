@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { FilmCard } from "../AnimeCard/AnimeCard";
+import { AnimeCard } from "../AnimeCard/AnimeCard";
 import './AnimeList.scss';
 import Button from '@mui/material/Button';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-import { FavoriteFilm } from "../FavoriteAnime/FavoriteAnime";
+import { FavoriteAnime } from "../FavoriteAnime/FavoriteAnime";
 import { Anime } from "../../Types/Anime";
 
 
-export const FilmList: React.FC = () => {
+export const AnimeList: React.FC = () => {
   const [animeFromServer, setAnimeFromServer] = useState([]);
   const [searchedAnime, setSearchedAnime] = useState('');
-  const [pages, setPages] = useState(6);
+  const [pages, setPages] = useState(3);
   const [idForFavorrite, setIdForFavorite] = useState<number>(0);
-  const [favorritsIds, setFavoritsIds] = useState<number[]>([]);
+  const [favorritsIdsList, setFavoritsIdsList] = useState<number[]>([]);
 
   useEffect(() => {
-    setFavoritsIds(curentAnime => [...curentAnime, idForFavorrite])
+    setFavoritsIdsList(curentAnime => [...curentAnime, idForFavorrite])
   }, [idForFavorrite])
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,20 +55,20 @@ useEffect(() => {
   return (
     <>
     <div className="container">
-      <div className="film">
+      <div className="anime">
         <h2>Список Аніме</h2>
         <input
           type="search"
           id="search-query"
-          className="film__input"
+          className="anime__input"
           placeholder="Type searched anime"
           value={searchedAnime}
           onChange={handleChange}
         />
-        <ul className="film__list">
+        <ul className="anime__list">
           {animeFromServer.map((anime: Anime) => (
             <li key={anime?.id}>
-              <FilmCard anime={anime} setId={setIdForFavorite} />
+              <AnimeCard anime={anime} setId={setIdForFavorite} />
             </li>
           ))
             
@@ -78,11 +78,14 @@ useEffect(() => {
       <Button 
         variant="contained" 
         endIcon={<ArrowCircleRightIcon />}
-        onClick={() => setPages(pages + 6)}
+        onClick={() => setPages(pages + 3)}
       >
         More
       </Button>
-      <FavoriteFilm filmsIds={favorritsIds}/>
+      <FavoriteAnime 
+        filmsIds={favorritsIdsList}
+        setFilmsId={setFavoritsIdsList}
+      />
     </div>
     
     </>

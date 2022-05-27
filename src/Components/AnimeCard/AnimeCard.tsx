@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
     setId: (id: number) => void;
   }
 
-export const FilmCard: React.FC<Props> = ({anime, setId}) => {
+export const AnimeCard: React.FC<Props> = ({anime, setId}) => {
 
 return (
   <>
@@ -35,6 +35,7 @@ return (
       <IconButton 
         aria-label="favorite" 
         size="large"
+        style={{marginLeft: 300}}
         onClick={() => setId(anime.id)}
       >
           <FavoriteBorderIcon />

@@ -1,4 +1,4 @@
-.favoriteFilm {
+.favoriteAnime {
   max-width: 1200px;
   display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -24,14 +24,8 @@
   }
 
   &__close {
+    height: 24px;
+    width: 24px;
     padding: 222px 10px 0 0;
-  }
-
-  &__close::before {
-    content: 'x';
-    color: black;
-    font-weight: 300;
-    font-size: 24px;
-    font-family: Arial, sans-serif;
   }
 }
