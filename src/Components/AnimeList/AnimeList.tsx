@@ -23,9 +23,6 @@ export const AnimeList: React.FC = () => {
     setSearchedAnime(event.target.value)
   };
 
-  console.log(searchedAnime);
-  
-
   const query = `
   {
   Page(page: 1, perPage: ${pages}) {
@@ -56,7 +53,7 @@ useEffect(() => {
       .then(data => setAnimeFromServer(data.data.Page.media))
 }, [query]);
 
-const debouncedChangeHandler = useCallback(
+const debouncedChangeHandler = useCallback (
   debounce(handleChange, 500)
 , []);
 
