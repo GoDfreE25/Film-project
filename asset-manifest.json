@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/film-project/static/css/main.5be5e35b.css",
-    "main.js": "/film-project/static/js/main.c38556db.js",
+    "main.js": "/film-project/static/js/main.0c585c46.js",
     "index.html": "/film-project/index.html",
     "main.5be5e35b.css.map": "/film-project/static/css/main.5be5e35b.css.map",
-    "main.c38556db.js.map": "/film-project/static/js/main.c38556db.js.map"
+    "main.0c585c46.js.map": "/film-project/static/js/main.0c585c46.js.map"
   },
   "entrypoints": [
     "static/css/main.5be5e35b.css",
-    "static/js/main.c38556db.js"
+    "static/js/main.0c585c46.js"
   ]
 }
